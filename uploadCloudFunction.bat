@@ -1,0 +1,1 @@
+"F:\360Downloads\app\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-7gaeky1165d57e77 --n quickstartFunctions --r --project "D:\study\wx_cloud" --report_first --report

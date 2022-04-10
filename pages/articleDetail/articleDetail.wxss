@@ -1,0 +1,76 @@
+/* pages/articleDetail/articleDetail.wxss */
+page {
+  padding-bottom: 200rpx;
+}
+.header {
+  padding: 32rpx 32rpx 20rpx;
+}
+.header_title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 56rpx;
+  margin-bottom: 20rpx;
+}
+.header_name {
+  font-size: 28rpx;
+  color: #186ffc;
+  margin-right: 24rpx;
+}
+.header_time {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+/* main */
+.main {
+  padding: 0 32rpx 0;
+}
+.main_detail {
+  font-size: 30rpx;
+  color: #666666;
+  line-height: 60rpx;
+  text-align: justify;
+}
+
+.main_image_box {
+  margin-top: 20rpx;
+}
+.main_first {
+  width: 100%;
+}
+.main_image {
+  width: 222rpx;
+  height: 222rpx;
+  margin-bottom: 10rpx;
+}
+.main_image:nth-of-type(3n-1) {
+  margin: 0 10rpx 10rpx;
+}
+
+/* 管理 */
+.fixed {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 60rpx;
+  left: 32rpx;
+  right: 32rpx;
+  background: #ffffff;
+  box-shadow: 0px 0px 32rpx 0px rgba(0, 0, 0, 0.1);
+  border-radius: 20rpx;
+  padding: 24rpx 40rpx;
+}
+.fixed_title {
+  font-size: 28rpx;
+  color: #333333;
+}
+.fixed_input {
+  font-size: 28rpx;
+  color: #dbdbdb;
+  background: #f6f6f6;
+  border-radius: 8rpx;
+  padding: 16rpx 24rpx;
+  margin-left: 40rpx;
+  flex: 1;
+}

@@ -1,0 +1,94 @@
+page {
+  --main-color: #186FFC;
+}
+.main-color {
+  color: var(--main-color);
+}
+
+/* flex布局 */
+.d-flex {
+  display: flex;
+}
+.f-column {
+  flex-direction: column;
+}
+.f-wrap {
+  flex-wrap: wrap;
+}
+.j-center {
+  justify-content: center;
+}
+.j-end {
+  justify-content: flex-end;
+}
+.j-around {
+  justify-content: space-around;
+}
+.j-between {
+  justify-content: space-between;
+}
+.a-center {
+  align-items: center;
+}
+.a-stretch {
+  align-items: stretch;
+}
+.f-shrink {
+  flex-shrink: 0;
+}
+.flex1 {
+  flex: 1;
+}
+.flex2 {
+  flex: 2;
+}
+.flex3 {
+  flex: 3;
+}
+.flex4 {
+  flex: 4;
+}
+.flex5 {
+  flex: 5;
+}
+
+.x-line-1 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.x-line-2 {
+  -webkit-line-clamp: 2;
+}
+
+.x-line-3 {
+  -webkit-line-clamp: 3;
+}
+
+.x-line-2,
+.x-line-3 {
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /* 弹性伸缩盒 */
+  -webkit-box-orient: vertical;
+  /* 设置伸缩盒子元素排列方式 */
+}
+
+/* start--去除button的所有默认样式--start */
+.x-reset-button {
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+  background-color: transparent;
+  color: inherit;
+  width: 100%!important;
+  font-weight: 400!important;
+}
+
+.x-reset-button::after {
+  border: none;
+}
+/* end--去除button的所有默认样式--end */

@@ -1,0 +1,67 @@
+/* pages/mine/mine.wxss */
+/* 头部 */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0 32rpx 32rpx;
+  background-color: var(--main-color);
+}
+.header image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 32rpx;
+}
+.header view {
+  font-size: 42rpx;
+  color: #ffffff;
+}
+.header .arrow{
+  color: #ffffff;
+  margin-left: auto;
+}
+
+/* 主体 */
+.main {
+  margin: 30rpx 32rpx 0;
+  border-bottom: 1px solid #eeeeee;
+}
+.item {
+  display: flex;
+  align-items: center;
+  padding: 40rpx 0;
+}
+.item.none{
+  opacity: 0.5;
+}
+button.item{
+  font-size: 32rpx!important;
+  color: #333333!important;
+  
+}
+.item .icon {
+  width: 42rpx;
+  height: 42rpx;
+}
+.item .title {
+  font-size: 32rpx;
+  color: #333333;
+}
+.item .arrow {
+  margin-left: auto;
+  color: #999;
+}
+
+.logout {
+  width: 510rpx;
+  height: 86rpx;
+  line-height: 86rpx;
+  background: #f6f7fa;
+  border-radius: 24rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #999999;
+  text-align: center;
+  margin: 50rpx auto 0;
+}

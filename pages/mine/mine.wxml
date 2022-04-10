@@ -1,0 +1,48 @@
+<!--pages/mine/mine.wxml-->
+<!-- 头部 -->
+<block wx:if="{{!userInfo}}">
+    <view class="header" bindtap="handleLogin">
+        <image src="/images/avatar.png"></image>
+        <view class="">请登录</view>
+        <text class="iconfont arrow icon-jinrujiantouxiao"></text>
+    </view>
+</block>
+
+<block wx:else>
+    <view class="header">
+        <image src="{{userInfo.avatarUrl}}"></image>
+        <view class="">{{userInfo.nickName}}</view>
+    </view>
+</block>
+
+
+
+<!-- 主体 -->
+<view class="main">
+    <!-- <view class="item">
+        <view class="title">我的发布</view>
+        <view class="iconfont arrow icon-jinrujiantouxiao"></view>
+    </view> -->
+
+    <view class="item none">
+        <view class="title">我的收藏</view>
+        <view class="iconfont arrow icon-jinrujiantouxiao"></view>
+    </view>
+
+    <view class="item none">
+        <view class="title">我的足迹</view>
+        <view class="iconfont arrow icon-jinrujiantouxiao"></view>
+    </view>
+
+    <button class="item x-reset-button" open-type="contact">
+        <view class="title">我的客服</view>
+        <view class="iconfont arrow icon-jinrujiantouxiao"></view>
+    </button>
+
+    <button class="item x-reset-button" open-type="feedback">
+        <view class="title">意见反馈</view>
+        <view class="iconfont arrow icon-jinrujiantouxiao"></view>
+    </button>
+</view>
+
+<view class="logout" bindtap="handleLogout" wx:if="{{userInfo}}">退出登录</view>

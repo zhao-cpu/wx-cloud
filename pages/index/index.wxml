@@ -1,0 +1,42 @@
+<view>
+    <!-- 轮播 -->
+    <swiper class="swiper" indicator-dots autoplay circular>
+        <block wx:for="{{bannerData}}" wx:key="index">
+            <swiper-item class="swiper_item" wx:if="{{item.status}}">
+                <image src="{{item.image}}" />
+            </swiper-item>
+        </block>
+    </swiper>
+    <!-- 推荐 -->
+    <view class="recommend">
+        <view class="recommend_head">
+            <view class="recommend_title">推荐</view>
+            <!-- <view class="recommend_head_more">
+                <text class="recommend_head_more_txt">查看更多</text>
+                <text class="iconfont icon-jinrujiantouxiao"></text>
+            </view> -->
+        </view>
+        <view class="recommend_main" wx:for="{{articleData}}" wx:key="index" bindtap="handleNav" data-type="detail" data-id="{{item._id}}" data-index="{{index}}">
+            <view class="main_left">
+                <view class="main_left_subtitle x-line-2">{{item.title}}</view>
+                <view class="d-flex">
+                    <view class="main_left_tag">涨知识</view>
+                    <view class="main_left_read d-flex a-center" wx:if="{{item.readNum > 0}}">
+                        <text class="read_icon iconfont icon-yanjing"></text>
+                        <text class="read_num">{{item.readNum}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="main_right" wx:if="{{item.images.length>0}}">
+                <image src="{{item.images[0]}}"></image>
+            </view>
+        </view>
+
+        <view class="no_more">没有更多了</view>
+    </view>
+</view>
+
+
+<view class="submit" bindtap="handleNav" data-type="submit" >
+    <image src="/images/add.png"></image>
+</view>

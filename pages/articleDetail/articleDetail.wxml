@@ -1,0 +1,27 @@
+<view class="header">
+    <view class="header_title">{{detail.title}}</view>
+    <view class="d-flex a-center">
+        <view class="header_name">不遭人妒是庸才</view>
+        <view class="header_time">8月11日</view>
+    </view>
+</view>
+
+<view class="main">
+    <text space="nbsp" class="main_detail">{{detail.desc}}</text>
+
+    <view wx:if="{{detail.images.length > 0}}" class="main_image_box">
+        <block wx:if="{{detail.images.length == 1}}">
+            <image bindtap="handlePreview" data-index="{{index}}" class="main_first" mode="widthFix" src="{{detail.images[0]}}"></image>
+        </block>
+        <block wx:if="{{detail.images.length > 1}}">
+            <image bindtap="handlePreview" data-index="{{index}}" class="main_image" mode="aspectFill" wx:for="{{detail.images}}" wx:key="index" src="{{item}}"></image>
+        </block>
+    </view>
+</view>
+
+<view bindtap="handleLike">点赞</view>
+
+<view  class="fixed" wx:if="{{detail.isOwn}}">
+    <view bindtap="handleSetting" class="fixed_title">管理</view>
+    <view bindtap="handleShowComment" class="fixed_input">发布互动消息</view>
+</view>

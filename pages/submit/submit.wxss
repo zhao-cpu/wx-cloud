@@ -1,0 +1,55 @@
+/* pages/submit/submit.wxss */
+page{
+  padding-bottom: 160rpx;
+}
+.form {
+  padding: 32rpx;
+}
+.item {
+  padding: 32rpx 0;
+  border-bottom: 1px solid #eee;
+}
+.item_title {
+  font-size: 36rpx;
+  color: #333333;
+  min-width: 180rpx;
+}
+.item_content {
+  margin-top: 32rpx;
+}
+.item_content textarea {
+  width: 100%;
+}
+.item_image {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 32rpx;
+}
+.item_image .image_box {
+  width: 222rpx;
+  height: 222rpx;
+  margin-bottom: 10rpx;
+}
+.item_image .image_box:nth-of-type(3n-1) {
+  margin: 0 10rpx 10rpx;
+}
+.item_image image {
+  width: 222rpx;
+  height: 222rpx;
+}
+
+.submit {
+  position: fixed;
+  bottom: 60rpx;
+  left: 32rpx;
+  right: 32rpx;
+  height: 86rpx;
+  line-height: 86rpx;
+  text-align: center;
+  background: var(--main-color);
+  border-radius: 24rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0 auto;
+}

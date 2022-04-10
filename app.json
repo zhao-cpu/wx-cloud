@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/articleDetail/articleDetail",
+    "pages/search/search",
+    "pages/submit/submit"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#186FFC",
+    "list": [
+      {
+        "text": "首页",
+        "iconPath": "images/tabar/home.png",
+        "selectedIconPath": "images/tabar/home_select.png",
+        "pagePath": "pages/index/index"
+        
+      },
+      {
+        "text": "我的",
+        "iconPath": "images/tabar/mine.png",
+        "selectedIconPath": "images/tabar/mine_select.png",
+        "pagePath": "pages/mine/mine"
+      }
+    ]
+  },
+  "window": {
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "知识共享",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

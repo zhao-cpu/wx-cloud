@@ -1,0 +1,34 @@
+<!--pages/submit/submit.wxml-->
+<view class="form">
+    <view class="item">
+        <view class="item_title">标题</view>
+        <view class="item_content">
+            <input bindinput="handleInput" data-name="title" value="{{title}}" type="text" placeholder="请输入标题" />
+        </view>
+    </view>
+
+    <view class="item">
+        <view class="item_title">内容</view>
+        <view class="item_content">
+            <textarea bindinput="handleInput" data-name="desc" value="{{desc}}" placeholder="请输入内容详情"></textarea>
+        </view>
+    </view>
+
+    <view class="item">
+        <view class="item_title">图片</view>
+        <view class="item_image">
+            <block wx:if="{{imageData.length}}">
+                <view class="image_box" wx:for="{{imageData}}" wx:key="index">
+                    <image src="{{item}}" mode="aspectFill"></image>
+                </view>
+            </block>
+            <view class="image_box">
+                <image bindtap="handleChooseImage" src="/images/add_image.png"></image>
+
+            </view>
+        </view>
+    </view>
+</view>
+
+
+<view class="submit" bindtap="handleSubmit">发布</view>
