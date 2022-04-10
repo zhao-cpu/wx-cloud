@@ -21,7 +21,7 @@
 
 <view bindtap="handleLike">点赞</view>
 
-<view  class="fixed" wx:if="{{detail.isOwn}}">
+<view class="fixed" wx:if="{{detail.isOwn}}">
     <view bindtap="handleSetting" class="fixed_title">管理</view>
     <view bindtap="handleShowComment" class="fixed_input">发布互动消息</view>
 </view>
