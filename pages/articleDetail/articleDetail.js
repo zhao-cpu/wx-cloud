@@ -1,6 +1,7 @@
 // pages/articleDetail/articleDetail.js
 const db = wx.cloud.database();
 const _ = db.command;
+const $ = _.aggregate;
 Page({
   /**
    * 页面的初始数据
@@ -113,21 +114,17 @@ Page({
     try {
       const { articleId } = this.data;
       wx.showNavigationBarLoading();
-      let data = await db.collection("article").doc(articleId).get();
-      db.collection("article")
-        .doc(articleId)
-        .update({
-          data: {
-            readNum: _.inc(1),
-          },
-        });
-      console.log(data);
-      if (data.data?.openId == wx.getStorageSync("openId")) {
-        data.data.isOwn = true;
-      } else {
-        data.data.isOwn = false;
-      }
-      this.setData({ detail: data.data });
+
+      let data = await wx.cloud.callFunction({
+        name: "article",
+        data: {
+          articleId,
+          openId: wx.getStorageSync("openId"),
+        },
+      });
+      console.log("data", data);
+
+      this.setData({ detail: data.result });
       wx.hideNavigationBarLoading();
     } catch (error) {
       console.log(error);
