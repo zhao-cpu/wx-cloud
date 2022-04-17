@@ -49,63 +49,71 @@ Page({
   },
   async handleSubmit() {
     try {
-      let { title, desc, imageData, detailId } = this.data;
-      title = title.replace(/^\s*|\s*$/g, "");
-      desc = desc.replace(/^\s*|\s*$/g, "");
-      if (!title || title.length > 30) {
-        return wx.showToast({
-          title: "请输入标题（30字以内）",
-          icon: "none",
-        });
-      }
-      if (!desc) {
-        return wx.showToast({
-          title: "请输入内容",
-          icon: "none",
-        });
-      }
-      let data;
-      wx.showLoading({
-        title: "加载中",
-        mask: true,
+      wx.requestSubscribeMessage({
+        tmplIds: ["2NREbnRpV9MWezQ4Pg785jxQduYz1rG6AU1TFOVdjK0"],
+        success: async (res) => {
+          console.log(res);
+          let { title, desc, imageData, detailId } = this.data;
+          title = title.replace(/^\s*|\s*$/g, "");
+          desc = desc.replace(/^\s*|\s*$/g, "");
+          if (!title || title.length > 30) {
+            return wx.showToast({
+              title: "请输入标题（30字以内）",
+              icon: "none",
+            });
+          }
+          if (!desc) {
+            return wx.showToast({
+              title: "请输入内容",
+              icon: "none",
+            });
+          }
+          let data;
+          wx.showLoading({
+            title: "加载中",
+            mask: true,
+          });
+          if (detailId) {
+            //   编辑
+            data = await wx.cloud
+              .database()
+              .collection("article")
+              .doc(detailId)
+              .update({
+                data: {
+                  title,
+                  desc,
+                  images: imageData,
+                  updateTime: Date.now(),
+                },
+              });
+          } else {
+            data = await wx.cloud
+              .database()
+              .collection("article")
+              .add({
+                data: {
+                  title,
+                  desc,
+                  images: imageData,
+                  openId: wx.getStorageSync("openId"),
+                  updateTime: Date.now(),
+                },
+              });
+          }
+          wx.hideLoading();
+          console.log(data);
+          if (detailId) {
+            wx.navigateBack({
+              delta: 1,
+            });
+          } else {
+            wx.redirectTo({
+              url: `/pages/articleDetail/articleDetail?id=${data._id}`,
+            });
+          }
+        },
       });
-      if (detailId) {
-        //   编辑
-        data = await wx.cloud
-          .database()
-          .collection("article")
-          .doc(detailId)
-          .update({
-            data: {
-              title,
-              desc,
-              images: imageData,
-            },
-          });
-      } else {
-        data = await wx.cloud
-          .database()
-          .collection("article")
-          .add({
-            data: {
-              title,
-              desc,
-              images: imageData,
-              openId: wx.getStorageSync("openId"),
-            },
-          });
-      }
-      wx.hideLoading();
-      console.log(data);
-      if (detailId) {
-        wx.navigateBack({
-          delta: 1,
-        });
-      } else {
-        wx.redirectTo({
-          url: `/pages/articleDetail/articleDetail?id=${data._id}`,
-        });
-      }
     } catch (error) {}
   },
   onLoad: function (options) {

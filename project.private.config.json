@@ -22,16 +22,30 @@
                 {
                     "name": "详情",
                     "pathName": "pages/articleDetail/articleDetail",
-                    "query": "id=636050766252d9c50519675f0c02a45c&index=3",
-                    "scene": null,
-                    "launchMode": "default"
+                    "query": "id=79aca08362556c77001be37732e859ab&index=3",
+                    "launchMode": "default",
+                    "scene": null
                 },
                 {
                     "name": "发布",
                     "pathName": "pages/submit/submit",
-                    "query": "id=d2fe6f2062527d8b061c9884541524c2",
+                    "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "我的点赞",
+                    "pathName": "pages/like/like",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "足迹",
+                    "pathName": "pages/footmark/footmark",
+                    "query": "",
+                    "scene": null,
+                    "launchMode": "default"
                 }
             ]
         }

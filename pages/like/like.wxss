@@ -1,0 +1,63 @@
+
+/* 推荐 */
+.recommend {
+    padding: 32rpx 32rpx 0;
+}
+
+.recommend_main {
+    display: flex;
+    height: 160rpx;
+    padding: 32rpx 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.main_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main_left_subtitle {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #555555;
+    word-break: break-all;
+}
+
+.main_left_tag {
+    height: 50rpx;
+    line-height: 50rpx;
+    background: #f5f5f5;
+    border-radius: 8rpx;
+    color: #666666;
+    font-size: 24rpx;
+    padding: 0 20rpx;
+    margin-right: 20rpx;
+}
+
+.read_icon {
+    color: #999999;
+}
+
+.read_num {
+    font-size: 24rpx;
+    color: #999999;
+    padding-left: 6rpx;
+}
+
+.main_right {
+    margin-left: auto;
+    padding-left: 16rpx;
+}
+.main_right image {
+    width: 240rpx;
+    height: 160rpx;
+    border-radius: 8rpx;
+    background-color: #eee;
+}
+.no_more{
+    text-align: center;
+    color: #999999;
+    font-size: 28rpx;
+    padding: 50rpx 0;
+}

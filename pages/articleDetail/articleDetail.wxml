@@ -1,8 +1,8 @@
 <view class="header">
     <view class="header_title">{{detail.title}}</view>
     <view class="d-flex a-center">
-        <view class="header_name" wx:if="{{detail.user.length}}">{{detail.user[0].nickName}}</view>
-        <view class="header_time">{{detail.update}}</view>
+        <view class="header_name">{{detail.userInfo && detail.userInfo.nickName || '官方'}}</view>
+        <view class="header_time">{{detail.timeStr}}</view>
     </view>
 </view>
 
@@ -19,7 +19,7 @@
     </view>
 </view>
 
-<!-- <view bindtap="handleLike">点赞</view> -->
+<view bindtap="handleLike" style="margin: 50rpx auto;text-align: center;">{{detail.isZan?'已点赞':'点赞'}}</view>
 
 <view class="fixed" wx:if="{{detail.isOwn}}">
     <view bindtap="handleSetting" class="fixed_title">管理</view>

@@ -1,11 +1,6 @@
 // pages/articleDetail/articleDetail.js
-const db = wx.cloud.database();
-const _ = db.command;
-const $ = _.aggregate;
+import time from "../../common/tools/timeFrom";
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     articleId: "",
     detail: null,
@@ -14,33 +9,46 @@ Page({
   // 点赞
   async handleLike() {
     try {
-      const { articleId } = this.data;
-      let userId = wx.getStorageSync("userInfo")?._id;
-      let res = await db
-        .collection("like")
-        .where({
-          articleId,
-          userId,
-        })
-        .count();
-      if (res.total > 0) {
-        await db
-          .collection("like")
-          .where({
-            articleId,
-            userId,
-          })
-          .remove();
-      } else {
-        let data = await db.collection("like").add({
+      const { articleId, detail } = this.data;
+      let type = 0;
+
+      let userInfo = wx.getStorageSync("userInfo");
+      if (userInfo._id) {
+        if (detail?.isZan) type = 0;
+        else type = 1;
+        wx.showLoading({
+          title: "加载中...",
+          mask: true,
+        });
+        let data = await wx.cloud.callFunction({
+          name: "article",
           data: {
+            type,
+            action: "zan",
             articleId,
-            userId,
+            userId: wx.getStorageSync("userInfo")?._id,
           },
         });
-        console.log(data);
+        wx.hideLoading();
+        this.setData({
+          "detail.isZan": type == 1 ? true : false,
+        });
+      } else {
+        wx.showModal({
+          title: "提示",
+          content: "登录享受更多功能！",
+          success: (res) => {
+            if (res.confirm)
+              wx.switchTab({
+                url: "/pages/mine/mine",
+              });
+          },
+        });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      wx.hideLoading();
+    }
   },
   // 展示评论弹框
   handleShowComment() {
@@ -71,9 +79,14 @@ Page({
                 title: "删除中",
                 mask: true,
               });
-              let data = await db.collection("article").doc(articleId).remove();
+              wx.cloud.callFunction({
+                name: "article",
+                data: {
+                  action: "remove",
+                  articleId,
+                },
+              });
               wx.hideLoading();
-              console.log(data);
               wx.navigateBack({
                 delta: 1,
               });
@@ -105,6 +118,7 @@ Page({
   },
   onLoad: function (options) {
     console.log("options", options);
+
     this.setData({
       articleId: options?.id,
       prevIndex: options?.index ?? -1,
@@ -114,20 +128,32 @@ Page({
     try {
       const { articleId } = this.data;
       wx.showNavigationBarLoading();
-
+      wx.showLoading({
+        title: "加载中...",
+        mask: true,
+      });
       let data = await wx.cloud.callFunction({
         name: "article",
         data: {
+          action: "detail",
           articleId,
           openId: wx.getStorageSync("openId"),
+          userId: wx.getStorageSync("userInfo")?._id,
         },
       });
+      wx.hideLoading();
       console.log("data", data);
 
+      data.result.timeStr = time(
+        data.result?.updateTime || 1650106923108,
+        false
+      );
       this.setData({ detail: data.result });
       wx.hideNavigationBarLoading();
     } catch (error) {
       console.log(error);
+      wx.hideNavigationBarLoading();
+      wx.hideLoading();
     }
   },
 

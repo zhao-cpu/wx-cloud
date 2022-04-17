@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/demo/demo",
+    "pages/footmark/footmark",
+    "pages/like/like",
     "pages/mine/mine",
     "pages/articleDetail/articleDetail",
     "pages/search/search",

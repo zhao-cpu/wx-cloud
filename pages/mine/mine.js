@@ -8,10 +8,26 @@ Page({
   data: {
     userInfo: null,
   },
+  handleNav(e) {
+    const { url } = e.currentTarget.dataset;
+
+    let userInfo = wx.getStorageSync("userInfo");
+    if (userInfo._id) {
+      if (url) wx.navigateTo({ url });
+    } else {
+      wx.showModal({
+        title: "提示",
+        content: "登录享受更多功能！",
+        success: (res) => {
+         
+        },
+      });
+    }
+  },
   handleLogout() {
     wx.removeStorageSync("userInfo");
     this.setData({ userInfo: null });
-    app.globalData.userInfo = null
+    app.globalData.userInfo = null;
   },
   async handleLogin() {
     try {

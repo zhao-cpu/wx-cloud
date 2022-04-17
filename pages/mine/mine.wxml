@@ -24,12 +24,12 @@
         <view class="iconfont arrow icon-jinrujiantouxiao"></view>
     </view> -->
 
-    <view class="item none">
-        <view class="title">我的收藏</view>
+    <view class="item " bindtap="handleNav" data-url="/pages/like/like">
+        <view class="title">我的点赞</view>
         <view class="iconfont arrow icon-jinrujiantouxiao"></view>
     </view>
 
-    <view class="item none">
+    <view class="item " bindtap="handleNav" data-url="/pages/footmark/footmark">
         <view class="title">我的足迹</view>
         <view class="iconfont arrow icon-jinrujiantouxiao"></view>
     </view>

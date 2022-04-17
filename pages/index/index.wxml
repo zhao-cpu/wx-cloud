@@ -11,10 +11,10 @@
     <view class="recommend">
         <view class="recommend_head">
             <view class="recommend_title">推荐</view>
-            <!-- <view class="recommend_head_more">
+            <view class="recommend_head_more">
                 <text class="recommend_head_more_txt">查看更多</text>
                 <text class="iconfont icon-jinrujiantouxiao"></text>
-            </view> -->
+            </view>
         </view>
         <view class="recommend_main" wx:for="{{articleData}}" wx:key="index" bindtap="handleNav" data-type="detail" data-id="{{item._id}}" data-index="{{index}}">
             <view class="main_left">
@@ -36,7 +36,6 @@
     </view>
 </view>
 
-
-<view class="submit" bindtap="handleNav" data-type="submit" >
+<view class="submit" bindtap="handleNav" data-type="submit">
     <image src="/images/add.png"></image>
 </view>
