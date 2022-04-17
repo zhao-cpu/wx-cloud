@@ -117,14 +117,13 @@ async function zan(event) {
         .collection("like")
         .where({
           articleId,
-          userId,
+          openId:wxContext.OPENID
         })
         .remove();
     } else {
       let data = await db.collection("like").add({
         data: {
           articleId,
-          userId,
           openId: wxContext.OPENID,
         },
       });
