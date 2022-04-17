@@ -10,6 +10,10 @@ Page({
       wx.navigateTo({
         url: `/pages/articleDetail/articleDetail?id=${id}&index=${index}`,
       });
+    } else if (type === "search") {
+      wx.navigateTo({
+        url: "/pages/search/search",
+      });
     } else if (type === "submit") {
       let userInfo = wx.getStorageSync("userInfo");
       if (userInfo._id) {

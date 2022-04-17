@@ -11,7 +11,7 @@
     <view class="recommend">
         <view class="recommend_head">
             <view class="recommend_title">推荐</view>
-            <view class="recommend_head_more">
+            <view class="recommend_head_more" bindtap="handleNav" data-type="search">
                 <text class="recommend_head_more_txt">查看更多</text>
                 <text class="iconfont icon-jinrujiantouxiao"></text>
             </view>

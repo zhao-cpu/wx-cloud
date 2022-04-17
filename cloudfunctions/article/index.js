@@ -1,6 +1,5 @@
 // 云函数入口文件
 const cloud = require("wx-server-sdk");
-
 cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV,
 });
@@ -12,7 +11,6 @@ const $ = _.aggregate;
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  console.log("event", event);
   switch (event.action) {
     case "detail":
       return detail(event);
@@ -103,6 +101,18 @@ async function remove(event) {
   try {
     let { articleId } = event;
     await db.collection("article").doc(articleId).remove();
+    await db
+      .collection("footmark")
+      .where({
+        articleId,
+      })
+      .remove();
+    await db
+      .collection("like")
+      .where({
+        articleId,
+      })
+      .remove();
   } catch (error) {
     console.log(error);
   }
@@ -117,7 +127,7 @@ async function zan(event) {
         .collection("like")
         .where({
           articleId,
-          openId:wxContext.OPENID
+          openId: wxContext.OPENID,
         })
         .remove();
     } else {
@@ -212,7 +222,7 @@ async function detail(event) {
       .collection("like")
       .where({
         articleId,
-        openId
+        openId,
       })
       .count();
     // 已点赞
