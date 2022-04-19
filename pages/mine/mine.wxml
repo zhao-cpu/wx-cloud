@@ -39,10 +39,7 @@
         <view class="iconfont arrow icon-jinrujiantouxiao"></view>
     </button>
 
-    <button class="item x-reset-button" open-type="feedback">
-        <view class="title">意见反馈</view>
-        <view class="iconfont arrow icon-jinrujiantouxiao"></view>
-    </button>
+
 </view>
 
 <view class="logout" bindtap="handleLogout" wx:if="{{userInfo}}">退出登录</view>

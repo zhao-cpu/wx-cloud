@@ -22,10 +22,32 @@ exports.main = async (event, context) => {
       return likeList(event);
     case "footmark":
       return footmark(event);
+    case "list":
+      return list(event);
     default:
       return {};
   }
 };
+// 列表
+async function list(event) {
+  try {
+    let title = event.title ? event.title : "";
+    console.log("title", title, typeof title);
+
+    return await cloud
+      .database()
+      .collection("article")
+      .where({
+        title: new db.RegExp({
+          regexp: ".*" + title,
+          options: "is",
+        }),
+      })
+      .get();
+  } catch (error) {
+    console.log(error);
+  }
+}
 // 足迹
 async function footmark(event) {
   try {
@@ -147,7 +169,7 @@ async function zan(event) {
 // 获取详情
 async function detail(event) {
   try {
-    let { articleId, openId, userId } = event;
+    let { articleId, openId } = event;
 
     let footmark = await db
       .collection("footmark")

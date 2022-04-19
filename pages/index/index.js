@@ -1,3 +1,4 @@
+const db = wx.cloud.database();
 Page({
   data: {
     bannerData: [],
@@ -55,13 +56,21 @@ Page({
   async _initArtice() {
     try {
       wx.showNavigationBarLoading();
-      let data = await wx.cloud.database().collection("article").get();
+      let data = await wx.cloud.callFunction({
+        name: "article",
+        data: {
+          action: "list"
+        },
+      });
       console.log("data", data);
       this.setData({
-        articleData: data.data,
+        articleData: data.result?.data,
       });
       wx.hideNavigationBarLoading();
-    } catch (error) {}
+    } catch (error) {
+      console.log("error", error);
+      wx.hideNavigationBarLoading();
+    }
   },
 
   onShow: function () {},
