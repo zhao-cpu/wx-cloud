@@ -19,7 +19,10 @@
     </view>
 </view>
 
-<view bindtap="handleLike" style="margin: 50rpx auto;text-align: center;">{{detail.isZan?'已点赞':'点赞'}}</view>
+<view bindtap="handleLike" class="circle">
+    <image src="/images/icon_{{detail.isZan?'zan_main':'zan'}}.png" style="margin-bottom: 20rpx;"></image>
+    {{detail.isZan?'取消':'点赞'}}
+</view>
 
 <view class="fixed" wx:if="{{detail.isOwn}}">
     <view bindtap="handleSetting" class="fixed_title">管理</view>

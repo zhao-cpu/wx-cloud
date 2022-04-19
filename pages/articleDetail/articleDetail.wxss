@@ -47,6 +47,26 @@ page {
 .main_image:nth-of-type(3n-1) {
   margin: 0 10rpx 10rpx;
 }
+.circle {
+  margin: 50rpx auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  background-color: #EBF3FF;
+  color: var(--main-color);
+  font-size: 30rpx;
+  padding: 20rpx;
+
+}
+.circle image{
+  width: 60rpx;
+  height: 60rpx;
+}
 
 /* 管理 */
 .fixed {
