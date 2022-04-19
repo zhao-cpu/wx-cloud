@@ -4,7 +4,6 @@ cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV,
 });
 
-const wxContext = cloud.getWXContext();
 const db = cloud.database();
 const _ = db.command;
 const $ = _.aggregate;
@@ -58,7 +57,7 @@ async function footmark(event) {
       .collection("footmark")
       .aggregate()
       .match({
-        openId: wxContext.OPENID,
+        openId: cloud.getWXContext().OPENID,
       })
       .sort({
         updateTime: -1,
@@ -95,7 +94,7 @@ async function likeList(event) {
       .collection("like")
       .aggregate()
       .match({
-        openId: wxContext.OPENID,
+        openId: cloud.getWXContext().OPENID,
       })
       .skip(skip)
       .limit(limit)
@@ -149,14 +148,14 @@ async function zan(event) {
         .collection("like")
         .where({
           articleId,
-          openId: wxContext.OPENID,
+          openId: cloud.getWXContext().OPENID,
         })
         .remove();
     } else {
       let data = await db.collection("like").add({
         data: {
           articleId,
-          openId: wxContext.OPENID,
+          openId: cloud.getWXContext().OPENID,
         },
       });
       console.log(data);
