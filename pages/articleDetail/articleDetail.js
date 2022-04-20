@@ -23,7 +23,7 @@ Page({
           await wx.cloud.callFunction({
             name: "subscribe",
             data: {
-              openId: userInfo?.openid,
+              openId: detail?.openId,
               name: userInfo?.nickName,
               content: `你的文章${detail?.title?.slice(0, 10)}收到新的点赞`,
               id: articleId,
