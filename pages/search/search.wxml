@@ -1,2 +1,27 @@
-<!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<view class="content">
+    <view class="search_box">
+        <input bindconfirm="handleSearch" type="text" bindinput="handleInput" placeholder="请输入内容" value="{{title}}" confirm-type="search" />
+        <image bindtap="handleSearch" src="/images/search.png"></image>
+    </view>
+</view>
+
+<!-- 推荐 -->
+<view class="recommend" wx:if="{{detail.data && detail.data.length}}">
+    <view class="recommend_main" wx:for="{{detail.data}}" wx:key="index" bindtap="handleNav" data-id="{{item._id}}" data-index="{{index}}">
+        <view class="main_left">
+            <view class="main_left_subtitle x-line-2">{{item.title}}</view>
+            <view class="d-flex">
+                <view class="main_left_tag">涨知识</view>
+                <view class="main_left_read d-flex a-center" wx:if="{{item.readNum > 0}}">
+                    <text class="read_icon iconfont icon-yanjing"></text>
+                    <text class="read_num">{{item.readNum}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="main_right" wx:if="{{item.images.length>0}}">
+            <image src="{{item.images[0]}}"></image>
+        </view>
+    </view>
+
+    <view class="no_more">没有更多了</view>
+</view>

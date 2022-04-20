@@ -30,9 +30,9 @@ exports.main = async (event, context) => {
 // 列表
 async function list(event) {
   try {
+    let { page = 1, limit = 10 } = event;
+    let skip = (page - 1) * limit;
     let title = event.title ? event.title : "";
-    console.log("title", title, typeof title);
-
     return await cloud
       .database()
       .collection("article")
@@ -42,6 +42,8 @@ async function list(event) {
           options: "is",
         }),
       })
+      .skip(skip)
+      .limit(limit)
       .get();
   } catch (error) {
     console.log(error);

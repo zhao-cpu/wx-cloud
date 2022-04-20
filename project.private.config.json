@@ -44,6 +44,13 @@
                     "name": "足迹",
                     "pathName": "pages/footmark/footmark",
                     "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "搜索",
+                    "pathName": "pages/search/search",
+                    "query": "",
                     "scene": null,
                     "launchMode": "default"
                 }
