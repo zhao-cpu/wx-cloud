@@ -123,6 +123,8 @@ Page({
       articleId: options?.id,
       prevIndex: options?.index ?? -1,
     });
+
+    this._initDetail()
   },
   async _initDetail() {
     try {
@@ -157,9 +159,7 @@ Page({
     }
   },
 
-  onShow: function () {
-    this._initDetail();
-  },
+ 
 
   /**
    * 生命周期函数--监听页面隐藏

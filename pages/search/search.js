@@ -9,6 +9,9 @@ Page({
       noMore: false,
     },
   },
+  onLoad() {
+    this._init(1);
+  },
   handleInput(e) {
     const title = e.detail.value;
     this.setData({ title });
@@ -49,7 +52,6 @@ Page({
         },
       });
       wx.hideLoading();
-      console.log("data", res);
 
       if (res.result?.data.length < limit) {
         this.setData({

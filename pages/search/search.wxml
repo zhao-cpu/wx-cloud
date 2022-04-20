@@ -1,6 +1,6 @@
 <view class="content">
     <view class="search_box">
-        <input bindconfirm="handleSearch" type="text" bindinput="handleInput" placeholder="请输入内容" value="{{title}}" confirm-type="search" />
+        <input bindconfirm="handleSearch" type="text" bindinput="handleInput" placeholder="请输入关键词" value="{{title}}" confirm-type="search" />
         <image bindtap="handleSearch" src="/images/search.png"></image>
     </view>
 </view>
