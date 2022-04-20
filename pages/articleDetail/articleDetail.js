@@ -1,5 +1,7 @@
 // pages/articleDetail/articleDetail.js
 import time from "../../common/tools/timeFrom";
+import timer from "../../common/tools/timeFormat";
+
 Page({
   data: {
     articleId: "",
@@ -15,12 +17,25 @@ Page({
       let userInfo = wx.getStorageSync("userInfo");
       if (userInfo._id) {
         if (detail?.isZan) type = 0;
-        else type = 1;
+        else {
+          type = 1;
+          // 点赞 触发订阅消息
+          await wx.cloud.callFunction({
+            name: "subscribe",
+            data: {
+              openId: userInfo?.openid,
+              name: userInfo?.nickName,
+              content: `你的文章${detail?.title?.slice(0, 10)}收到新的点赞`,
+              id: articleId,
+              time: timer(Date.now(), "yyyy年mm月dd日 hh:MM"),
+            },
+          });
+        }
         wx.showLoading({
           title: "加载中...",
           mask: true,
         });
-        let data = await wx.cloud.callFunction({
+        await wx.cloud.callFunction({
           name: "article",
           data: {
             type,
@@ -124,7 +139,7 @@ Page({
       prevIndex: options?.index ?? -1,
     });
 
-    this._initDetail()
+    this._initDetail();
   },
   async _initDetail() {
     try {
@@ -158,8 +173,6 @@ Page({
       wx.hideLoading();
     }
   },
-
- 
 
   /**
    * 生命周期函数--监听页面隐藏

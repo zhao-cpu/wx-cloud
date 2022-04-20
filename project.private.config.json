@@ -22,9 +22,9 @@
                 {
                     "name": "详情",
                     "pathName": "pages/articleDetail/articleDetail",
-                    "query": "id=79aca08362556c77001be37732e859ab&index=3",
-                    "launchMode": "default",
-                    "scene": null
+                    "query": "id=63605076625180c004fa5f967afdf780&index=0",
+                    "scene": null,
+                    "launchMode": "default"
                 },
                 {
                     "name": "发布",
@@ -51,8 +51,8 @@
                     "name": "搜索",
                     "pathName": "pages/search/search",
                     "query": "",
-                    "scene": null,
-                    "launchMode": "default"
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }
