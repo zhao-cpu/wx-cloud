@@ -34,6 +34,11 @@
         <view class="iconfont arrow icon-jinrujiantouxiao"></view>
     </view>
 
+    <view class="item " bindtap="handleRemind" >
+        <view class="title">日程提醒</view>
+        <view class="iconfont arrow icon-jinrujiantouxiao"></view>
+    </view>
+
     <button class="item x-reset-button" open-type="contact">
         <view class="title">我的客服</view>
         <view class="iconfont arrow icon-jinrujiantouxiao"></view>

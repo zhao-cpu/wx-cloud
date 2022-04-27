@@ -2,11 +2,27 @@
 const app = getApp();
 const db = wx.cloud.database();
 Page({
-  /**
-   * 页面的初始数据
-   */
+
   data: {
     userInfo: null,
+  },
+  // 日程提醒
+  async handleRemind() {
+    let userInfo = wx.getStorageSync("userInfo");
+    if (userInfo._id) {
+      wx.requestSubscribeMessage({
+        tmplIds: ["xJjYp4UOon0a8Wf8BxnpbdC71UKxtgix8c-rAjsn-DM"],
+        success: async (res) => {
+          console.log(res);
+        },
+      });
+    } else {
+      wx.showModal({
+        title: "提示",
+        content: "登录享受更多功能！",
+        success: (res) => {},
+      });
+    }
   },
   handleNav(e) {
     const { url } = e.currentTarget.dataset;
@@ -18,9 +34,7 @@ Page({
       wx.showModal({
         title: "提示",
         content: "登录享受更多功能！",
-        success: (res) => {
-         
-        },
+        success: (res) => {},
       });
     }
   },
