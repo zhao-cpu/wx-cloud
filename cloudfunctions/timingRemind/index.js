@@ -20,7 +20,7 @@ exports.main = async (event) => {
 
   userList.data.forEach(async (item) => {
     await cloud.openapi.subscribeMessage.send({
-      touser: item.openapi,
+      touser: item.openid,
       page: `/pages/mine/mine`,
       lang: "zh_CN",
       data: {
