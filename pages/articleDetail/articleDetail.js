@@ -7,6 +7,47 @@ Page({
     articleId: "",
     detail: null,
     prevIndex: -1, // 上个页面传递的索引
+    content: "",
+  },
+  // 评论内容
+  handleInput(e) {
+    const { value } = e.detail;
+    this.setData({ content: value });
+  },
+  // 发送评论
+  async handleComment() {
+    try {
+      let userInfo = wx.getStorageSync("userInfo");
+      let { articleId, content } = this.data;
+      content = content.replace(/^\s*|\s*$/g, "");
+      if (!content) {
+        return wx.showToast({
+          title: "请输入内容",
+          icon: "none",
+        });
+      }
+      wx.showLoading({
+        title: "评论中...",
+        mask: true,
+      });
+      await wx.cloud.callFunction({
+        name: "article",
+        data: {
+          action: "comment",
+          id: articleId,
+          content: content,
+          image: [],
+          nickName: userInfo?.nickName,
+          avatarUrl: userInfo?.avatarUrl,
+        },
+      });
+      wx.hideLoading();
+      this.setData({ content: "" });
+      this._initDetail();
+    } catch (error) {
+      console.log(error);
+      wx.hideLoading();
+    }
   },
   // 点赞
   async handleLike() {
@@ -65,13 +106,7 @@ Page({
       wx.hideLoading();
     }
   },
-  // 展示评论弹框
-  handleShowComment() {
-    wx.showToast({
-      title: "暂未开放",
-      icon: "none",
-    });
-  },
+
   // 管理
   async handleSetting() {
     try {
@@ -187,7 +222,10 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () {
+    this._initDetail();
+    wx.stopPullDownRefresh();
+  },
 
   /**
    * 页面上拉触底事件的处理函数

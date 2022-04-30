@@ -21,6 +21,14 @@ page {
   font-size: 28rpx;
   color: #999999;
 }
+.header_like {
+  margin-left: 24rpx;
+  font-size: 28rpx;
+  color: #999999;
+}
+.header_like view:last-of-type {
+  margin-left: 8rpx;
+}
 
 /* main */
 .main {
@@ -57,13 +65,12 @@ page {
   width: 180rpx;
   height: 180rpx;
   border-radius: 50%;
-  background-color: #EBF3FF;
+  background-color: #ebf3ff;
   color: var(--main-color);
   font-size: 30rpx;
   padding: 20rpx;
-
 }
-.circle image{
+.circle image {
   width: 60rpx;
   height: 60rpx;
 }
@@ -84,13 +91,57 @@ page {
 .fixed_title {
   font-size: 28rpx;
   color: #333333;
+  margin-right: 40rpx;
+}
+.fixed_comment {
+  margin-right: 0;
+  position: relative;
+}
+.fixed_comment::before {
+  content: "";
+  position: absolute;
+  top: -20rpx;
+  left: -20rpx;
+  right: -20rpx;
+  bottom: -20rpx;
 }
 .fixed_input {
   font-size: 28rpx;
-  color: #dbdbdb;
+  color: #333;
   background: #f6f6f6;
   border-radius: 8rpx;
-  padding: 16rpx 24rpx;
-  margin-left: 40rpx;
+  /* padding: 16rpx 24rpx; */
+  margin-right: 40rpx;
   flex: 1;
+  padding: 10rpx;
+}
+
+/* 评论 */
+.comment_box {
+  display: flex;
+  margin: 0 32rpx;
+  border-bottom: 1px solid #eeeeee;
+  padding: 32rpx 0;
+}
+.comment_box image {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.comment_right {
+  margin-left: 20rpx;
+}
+.comment_right view:first-of-type {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+  line-height: 44rpx;
+  margin: 8rpx 0;
+}
+.comment_right view:last-of-type {
+  font-size: 30rpx;
+  color: #666666;
+  line-height: 50rpx;
+  text-align: justify;
 }

@@ -23,10 +23,32 @@ exports.main = async (event, context) => {
       return footmark(event);
     case "list":
       return list(event);
+    case "comment":
+      return comment(event);
     default:
       return {};
   }
 };
+// 发布评论
+async function comment(event) {
+  try {
+    const { id, content, image, nickName, avatarUrl } = event;
+    const openId = cloud.getWXContext().OPENID;
+    let data = await db
+      .collection("article")
+      .where({
+        _id: id,
+      })
+      .update({
+        data: {
+          comments: _.push({ id, content, image, openId, nickName, avatarUrl }),
+        },
+      });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 // 列表
 async function list(event) {
   try {
@@ -179,7 +201,6 @@ async function detail(event) {
         articleId,
       })
       .count();
-    console.log(footmark, "footmark");
     if (footmark.total > 0) {
       await db
         .collection("footmark")
@@ -238,8 +259,12 @@ async function detail(event) {
           readNum: _.inc(1),
         },
       });
-    console.log(data.list[0]);
-
+    // 点赞数量
+    const likeCount = await db.collection("like").where({
+      articleId,
+    }).count();
+    console.log('likeCount',likeCount);
+    data.list[0].likeCount = likeCount.total || 0;
     // 判断是否点过赞
     let count = await db
       .collection("like")

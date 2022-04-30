@@ -3,6 +3,10 @@
     <view class="d-flex a-center">
         <view class="header_name">{{detail.userInfo && detail.userInfo.nickName || '官方'}}</view>
         <view class="header_time">{{detail.timeStr}}</view>
+        <view wx:if="{{detail && detail.likeCount}}" class="d-flex a-center header_like">
+            <view class="iconfont icon-icon"></view>
+            <view>{{detail.likeCount}}</view>
+        </view>
     </view>
 </view>
 
@@ -24,7 +28,25 @@
     {{detail.isZan?'取消':'点赞'}}
 </view>
 
+<block wx:for="{{detail && detail.comments}}" wx:key="index">
+    <view class="comment_box">
+        <image src="{{item.avatarUrl}}"></image>
+        <view class="comment_right">
+            <view>{{item.nickName}}</view>
+            <view>{{item.content}}</view>
+        </view>
+    </view>
+</block>
+
+
+
 <view class="fixed" wx:if="{{detail.isOwn}}">
     <view bindtap="handleSetting" class="fixed_title">管理</view>
-    <view bindtap="handleShowComment" class="fixed_input">发布互动消息</view>
+    <input placeholder="发布互动消息" cursor-spacing="10" bindinput="handleInput" confirm-type="send" value="{{content}}" bindtap="handleShowComment" bindconfirm="handleComment" class="fixed_input" />
+    <view class="fixed_title fixed_comment" bindtap="handleComment">评论</view>
+</view>
+
+<view class="fixed" wx:else>
+    <input placeholder="发布互动消息" cursor-spacing="10" bindinput="handleInput" confirm-type="send" value="{{content}}" bindtap="handleShowComment" bindconfirm="handleComment" class="fixed_input" />
+    <view class="fixed_title fixed_comment" bindtap="handleComment">评论</view>
 </view>

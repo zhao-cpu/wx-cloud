@@ -45,6 +45,7 @@ Page({
       let res = await wx.cloud.callFunction({
         name: "banner",
       });
+      console.log(res);
       this.setData({
         bannerData: res.result.data?.data,
       });
